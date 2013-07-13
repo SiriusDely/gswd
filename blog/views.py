@@ -5,8 +5,7 @@ from .models import Post
 
 class PublishPostsMixin(object):
 	def get_queryset(self):
-		queryset = super(PublishPostsMixin, self).get_queryset()
-		return queryset.filter(published=True)
+		return self.model.objects.live()
 
 class PostListView(PublishPostsMixin, ListView):
 	model = Post
